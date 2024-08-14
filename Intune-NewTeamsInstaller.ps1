@@ -248,8 +248,9 @@ Uninstall-ProgramFromFolder -Path (Join-Path ${env:ProgramFiles(x86)} "Microsoft
 Uninstall-ProgramFromFolder -Path (Join-Path ${env:ProgramFiles} "Microsoft\Teams\current")  -uninstaller "update.exe" -UninstallArgs "--uninstall -s"
 
 # Uninstall All Classic Teams apps with installation folder in personal profile
-$userProfile = $env:USERPROFILE
-$usersDirectory = Split-Path $userProfile
+#$userProfile = $env:USERPROFILE
+#$usersDirectory = Split-Path $userProfile
+$usersDirectory = "C:\Users"
 $userDirectories = Get-ChildItem -Path $usersDirectory -Directory
 # Loop through each userprofile directory and uninstall
 foreach ($userdirectory in $userDirectories) {
@@ -284,6 +285,7 @@ try{Get-Item $ClassicTeamsPersonalroaming | Remove-Item -Force -Recurse
     Write-Verbose -verbose "$(Get-Date -Format 'yyyy-MM-dd'),$(Get-Date -format 'HH:mm:ss'),info,Success to remove $($ClassicTeamsPersonalroaming)"}
 catch{write-verbose -verbose "$(Get-Date -Format 'yyyy-MM-dd'),$(Get-Date -format 'HH:mm:ss'),error,Failed to remove $($ClassicTeamsPersonalroaming)"}
 
+<#
 # Install New Teams
 $process = Start-Process -FilePath $NewTeamsInstaller -ArgumentList $NewTeamsInstallerArgs -Wait -PassThru -ErrorAction STOP
 if ($process.ExitCode -eq 0){write-verbose -verbose "$(Get-Date -Format 'yyyy-MM-dd'),$(Get-Date -format 'HH:mm:ss'),info,Success to Install $($NewTeamsInstaller)"
@@ -294,6 +296,7 @@ else{write-verbose -verbose "$(Get-Date -Format 'yyyy-MM-dd'),$(Get-Date -format
     $Global:EventId=11
     $Global:EventType="Error"
     }
+#>
 
 #stop transcript and write to eventlog
 Stop-Transcript |out-null
