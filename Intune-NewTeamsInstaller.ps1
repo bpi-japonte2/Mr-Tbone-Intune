@@ -255,7 +255,7 @@ $userDirectories = Get-ChildItem -Path $usersDirectory -Directory
 # Loop through each userprofile directory and uninstall
 foreach ($userdirectory in $userDirectories) {
     $username = Split-Path $userdirectory -Leaf
-    Uninstall-ProgramFromFolder -Path (Join-Path $userdirectory "appdata\local\Microsoft\Teams") -uninstaller "update.exe" -UninstallArgs "--uninstall -s"
+    Uninstall-ProgramFromFolder -Path (Join-Path $($userdirectory.FullName) "appdata\local\Microsoft\Teams") -uninstaller "update.exe" -UninstallArgs "--uninstall -s"
     Uninstall-ProgramFromFolder -Path (Join-Path $($env:ProgramData) "$($username)\Microsoft\Teams") -uninstaller "update.exe" -UninstallArgs "--uninstall -s"
 }
 
