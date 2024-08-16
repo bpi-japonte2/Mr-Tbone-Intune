@@ -51,7 +51,7 @@
 [bool]$RemovePersonalTeams      = $true                     #Remove Personal Teams to avoid confution between Corporate and Personal Teams
 
 [string]$TaskName               = "Intune-NewTeamsInstaller"#TaskName for the eventlog
-[string]$CorpDataPath           = "C:\ProgramData\MrTbone"  #Path for the logfiles
+[string]$CorpDataPath           = "C:\temp"  #Path for the logfiles
 #endregion
 
 #region ---------------------------------------------------[Set global script settings]--------------------------------------------
